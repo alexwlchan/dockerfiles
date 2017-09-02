@@ -9,7 +9,7 @@ LABEL description "A Docker image for Jekyll, the static site generator"
 #   - https://github.com/ffi/ffi/issues/485
 #
 RUN apk update
-RUN apk add build-base ruby ruby-dev ruby-doc ruby-irb
+RUN apk add build-base libffi-dev ruby ruby-dev ruby-irb ruby-rdoc
 
 RUN gem install bundler jekyll
 
