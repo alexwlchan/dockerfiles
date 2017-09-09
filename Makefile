@@ -1,6 +1,9 @@
 jekyll:
 	docker build --tag alexwlchan/jekyll jekyll
 
-all: jekyll
+travis:
+	docker build --tag alexwlchan/travis travis
 
-.PHONY: jekyll
+all: jekyll travis
+
+.PHONY: all jekyll travis
