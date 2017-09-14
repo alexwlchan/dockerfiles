@@ -2,6 +2,8 @@
 
 This is a Docker image for running the [Heritrix web crawler][ia].
 
+I was testing this for something (I don't remember what now), and it was more convenient to install it in Docker than try to run it locally.
+
 ## Usage
 
 ```console
