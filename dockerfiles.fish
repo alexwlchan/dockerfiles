@@ -33,3 +33,9 @@ function travis
             alexwlchan/travis $argv
     end
 end
+
+
+function uniscribe
+    build uniscribe
+    docker run alexwlchan/uniscribe $argv
+end
