@@ -8,9 +8,9 @@ function dockerfiles-clean
 end
 
 function build --description "Build and record a Docker image from dockerfiles"
-    test -f ~/.dockerfiles/travis
+    set name $argv[1]
+    test -f ~/.dockerfiles/$name
     if [ $status != 0 ]
-        set name $argv[1]
         docker build --tag alexwlchan/$name --file ~/repos/dockerfiles/$name/Dockerfile ~/repos/dockerfiles/$name
         mkdir -p ~/.dockerfiles
         touch ~/.dockerfiles/$name
