@@ -22,6 +22,7 @@ end
 function travis
     build travis
     git rev-parse --show-toplevel >/dev/null 2>&1
+    mkdir -p ~/.travis
     if [ $status = 0 ]
         docker run \
             --volume ~/.travis:/root/.travis \
