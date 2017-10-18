@@ -1,0 +1,22 @@
+language: python
+sudo: required
+
+python: 3.6
+
+services:
+  - docker
+
+branches:
+  only:
+    - master
+
+install:
+  - pip install daiquiri requests
+
+script:
+  - ./travis_run.py
+
+env:
+  global:
+    - DOCKER_USERNAME=greengloves
+    - secure: l+gWE278p8u+nWHY/8GARVD24DyR+Mkb3QVH2AjAEDCbbxELQb4hm26ZGxqYQIRjAehUaZrSxzTQVg1Rs7Ir66FDJH/B12k0BbwrPCPWvnItnrLvqkSo1gzHMtKM2HByaq9G6KqF0V1yNzknxAyips+oT5oiREMm4vMoMUh2olhF0XLkigAU4Nhe2jXxJ4aVDKJDqoJmv7o3+NDA9yu0Gt2XpnrJSRHhMpKyPee/YxPmbAD0S5QUovX4rE3VELbQVPxkGhEzAD4WttpyGI/ppZXiuEubmegq/SOaOneJudKLFTqDAbpQyjI0QwVuYWXDBxL8LtR9teljLPnVttdeR5mwmG93kJbpaAF1dMRZCuv/E4z9b0Ugfvb/DWpuzQus9hF94Ud8xc8SWAhWUfUtXc+EPMBBXpcFFKiQQJ0W3GO/pEP5wIeTjzeq7nUJbvbMtAsKlvyKJCogkGrq49/cbo0RQaCCwV637SNA//KdXnooWpjDC0/kx5YmL85hGVNXYAJ65qFw6Xry3TuNVb27O/AY6kHAt4BPQXnqiR1mm28BlMFyOeeErTAmClacvIUfz+A8KyRSxyh/4ltgKeW1iGMRM6TomM+bIKik5HJM6TTusuPDH0wHlaVX8+H0InVI/M/Tl1Cq1vvpyVw1tyJovJ0P8hCrilcj7uz7PeEmtqM=

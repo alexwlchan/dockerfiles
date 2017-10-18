@@ -13,10 +13,13 @@ $(ROOT)/.docker/twine: $(TWINE)/Dockerfile $(TWINE)/requirements.txt
 
 twine-build: $(ROOT)/.docker/twine
 
+twine-version:
+	@echo $(TWINE_VERSION)
+
 twine-publish: twine-build
 	docker push $(TWINE_IMAGE):latest
 	docker tag $(TWINE_IMAGE):latest $(TWINE_IMAGE):$(TWINE_VERSION)
 	docker push $(TWINE_IMAGE):$(TWINE_VERSION)
 
 
-.PHONY: twine-build twine-publish
+.PHONY: twine-build twine-publish twine-version
