@@ -1,7 +1,7 @@
 export ROOT = $(shell git rev-parse --show-toplevel)
 export FLAKE8 = $(ROOT)/flake8
 export FLAKE8_IMAGE = greengloves/flake8
-export FLAKE8_VERSION = $(shell cat $(FLAKE8)/requirements.in | tr '=' ' ' | awk '{print $$2}')
+export FLAKE8_VERSION = $(shell cat $(FLAKE8)/requirements | grep flake8 | tr '=' ' ' | awk '{print $$2}')
 
 
 $(FLAKE8)/requirements.txt: $(FLAKE8)/requirements.in
