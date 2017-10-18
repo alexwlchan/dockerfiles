@@ -40,8 +40,11 @@ for p in publish_tasks:
         for img in resp.json()['results']
         if img['name'] != 'latest'
     ]
-    latest_image = max(versioned_images, key=lambda img: img['last_updated'])
-    latest_version = latest_image['name'].strip()
+    try:
+        latest_image = max(versioned_images, key=lambda img: img['last_updated'])
+        latest_version = latest_image['name'].strip()
+    except ValueError:
+        latest_version = '<none>'
     logger.info('Docker Hub  = %s', latest_version)
 
     local_version = subprocess.check_output(['make', f'{name}-version']).decode('ascii').strip()
