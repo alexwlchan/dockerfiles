@@ -34,26 +34,26 @@ for p in publish_tasks:
 
     if os.environ.get('TRAVIS_EVENT_TYPE') == 'pull_request':
         logger.info('This is a Travis PR, skipping publish steps')
-
-    versioned_images = [
-        img
-        for img in resp.json()['results']
-        if img['name'] != 'latest'
-    ]
-    try:
-        latest_image = max(versioned_images, key=lambda img: img['last_updated'])
-        latest_version = latest_image['name'].strip()
-    except ValueError:
-        latest_version = '<none>'
-    logger.info('Docker Hub  = %s', latest_version)
-
-    local_version = subprocess.check_output(['make', f'{name}-version']).decode('ascii').strip()
-    logger.info('Local build = %s', local_version)
-
-    if latest_version == local_version:
-        logger.info('Versions match, nothing to do!')
     else:
-        logger.warning('Versions differ, rebuilding!')
-        subprocess.check_call(['make', f'{name}-publish'])
+        versioned_images = [
+            img
+            for img in resp.json()['results']
+            if img['name'] != 'latest'
+        ]
+        try:
+            latest_image = max(versioned_images, key=lambda img: img['last_updated'])
+            latest_version = latest_image['name'].strip()
+        except ValueError:
+            latest_version = '<none>'
+        logger.info('Docker Hub  = %s', latest_version)
+
+        local_version = subprocess.check_output(['make', f'{name}-version']).decode('ascii').strip()
+        logger.info('Local build = %s', local_version)
+
+        if latest_version == local_version:
+            logger.info('Versions match, nothing to do!')
+        else:
+            logger.warning('Versions differ, rebuilding!')
+            subprocess.check_call(['make', f'{name}-publish'])
 
     logger.info('*** Finished checks for %s', name)
