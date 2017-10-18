@@ -16,8 +16,8 @@ publish_tasks = [t for t in tasks if t.endswith('-publish')]
 
 # For each publish task, get the most recent version from Docker Hub
 for p in publish_tasks:
-    logger.info('Running checks for %s', p)
     name = p.rsplit('-', 1)[0]
+    logger.info('*** Starting checks for %s', name)
     resp = requests.get(
         f'https://registry.hub.docker.com/v2/repositories/greengloves/{name}/tags/'
     )
@@ -42,7 +42,8 @@ for p in publish_tasks:
 
     if latest_version == local_version:
         logger.info('Versions match, nothing to do!')
-        continue
     else:
         logger.warning('Versions differ, rebuilding!')
         subprocess.check_call(['make', f'{name}-publish'])
+
+    logger.info('*** Finished checks for %s', name)
