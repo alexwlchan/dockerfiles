@@ -1,7 +1,7 @@
 export ROOT = $(shell git rev-parse --show-toplevel)
 export TWINE = $(ROOT)/twine
 export TWINE_IMAGE = greengloves/twine
-export TWINE_VERSION = $(shell cat $(TWINE)/requirements.in | tr '=' ' ' | awk '{print $2}')
+export TWINE_VERSION = $(shell cat $(TWINE)/requirements.in | tr '=' ' ' | awk '{print $$2}')
 
 
 $(TWINE)/requirements.txt: $(TWINE)/requirements.in
@@ -15,6 +15,7 @@ twine-build: $(ROOT)/.docker/twine
 
 twine-publish: twine-build
 	docker push $(TWINE_IMAGE):latest
+	docker tag $(TWINE_IMAGE):latest $(TWINE_IMAGE):$(TWINE_VERSION)
 	docker push $(TWINE_IMAGE):$(TWINE_VERSION)
 
 
