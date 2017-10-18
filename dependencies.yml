@@ -2,6 +2,7 @@ collectors:
 
   - type: python-pip
     path: flake8/requirements.in
+    versions: "Y.Y.Y"
     actors:
       - type: python-pip
         dependencies: ".*"
@@ -10,6 +11,7 @@ collectors:
 
   - type: python-pip
     path: twine/requirements.in
+    versions: "Y.Y.Y"
     actors:
       - type: python-pip
         dependencies: ".*"
