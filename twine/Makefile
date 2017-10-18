@@ -1,7 +1,7 @@
 export ROOT = $(shell git rev-parse --show-toplevel)
 export TWINE = $(ROOT)/twine
 export TWINE_IMAGE = greengloves/twine
-export TWINE_VERSION = $(shell cat $(TWINE)/requirements.in | tr '=' ' ' | awk '{print $$2}')
+export TWINE_VERSION = $(shell cat $(TWINE)/requirements.txt | grep twine | tr '=' ' ' | awk '{print $$2}')
 
 
 $(TWINE)/requirements.txt: $(TWINE)/requirements.in
