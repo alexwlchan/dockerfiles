@@ -11,8 +11,20 @@ import requests
 daiquiri.setup(level=logging.INFO)
 logger = daiquiri.getLogger()
 
-tasks = subprocess.check_output(['make', 'list']).decode('ascii').split()
-publish_tasks = [t for t in tasks if t.endswith('-publish')]
+publish_tasks = []
+for root, _, filenames in os.walk('.'):
+    for f in filenames:
+        if f != 'Makefile':
+            continue
+        path = os.path.join(root, f)
+        with open(path, 'r', encoding='utf-8') as f:
+            for line in f:
+                if line != line.lstrip():
+                    continue
+                task = line.split(':')[0]
+                if not task.endswith('-publish'):
+                    continue
+                publish_tasks.append(task)
 
 logger.info('*** Logging in to Docker Hub')
 subprocess.check_call([
