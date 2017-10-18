@@ -14,6 +14,13 @@ logger = daiquiri.getLogger()
 tasks = subprocess.check_output(['make', 'list']).decode('ascii').split()
 publish_tasks = [t for t in tasks if t.endswith('-publish')]
 
+logger.info('*** Logging in to Docker Hub')
+subprocess.check_call([
+    'docker', 'login',
+    '--username', os.environ['DOCKER_USERNAME'],
+    '--password', os.environ['DOCKER_PASSWORD']
+])
+
 # For each publish task, get the most recent version from Docker Hub
 for p in publish_tasks:
     name = p.rsplit('-', 1)[0]
