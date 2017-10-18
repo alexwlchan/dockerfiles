@@ -2,18 +2,18 @@ collectors:
 
   - type: python-pip
     path: flake8/requirements.in
-    versions: "Y.Y.Y"
     actors:
       - type: python-pip
         dependencies: ".*"
+        versions: "Y.Y.Y"
         settings:
           pip_freeze_target: flake8/requirements.txt
 
   - type: python-pip
     path: twine/requirements.in
-    versions: "Y.Y.Y"
     actors:
       - type: python-pip
         dependencies: ".*"
+        versions: "Y.Y.Y"
         settings:
           pip_freeze_target: twine/requirements.txt
