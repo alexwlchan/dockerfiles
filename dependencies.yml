@@ -1,0 +1,4 @@
+collectors:
+
+  - type: python-pip
+    path: twine/requirements.in
