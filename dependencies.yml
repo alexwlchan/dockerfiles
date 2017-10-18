@@ -5,3 +5,5 @@ collectors:
     actors:
       - type: python-pip
         dependencies: ".*"
+        settings:
+          pip_freeze_target: twine/requirements.txt
