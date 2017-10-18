@@ -1,12 +1,14 @@
 # dockerfiles
 
 This repo contains some of my useful Dockerfiles.
-These don't all produce Docker images that I run directly, they serve more like building blocks for larger projects.
 
-For example, I have Dockerfiles for Python libraries with non-trivial dependencies.
-When I need one of those dependencies in a project, I'll copy the relevant parts from the Dockerfile in this repo, rather than re-deriving it from scratch.
+Some of them produce images that I run directly (for example, *flake8* or *travis*) to avoid having to install dependencies locally.
+These are pushed to Docker Hub and can be accessed through `docker pull`.
+
+Others serve as building blocks for bigger projects.
+For example, I have some Dockerfiles for Python libraries with non-trivial dependencies.
+When I need one of those dependencies in a project, I'll copy the relevant parts from the Dockerfile in this repo, rather than rederiving it from scratch.
 
 ## License
 
-This repo is more a collection of ideas than directly usable code -- grab stuff and do what you like with it.
-Unlicense.
+MIT.
