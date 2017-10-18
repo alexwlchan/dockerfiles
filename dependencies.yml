@@ -2,3 +2,6 @@ collectors:
 
   - type: python-pip
     path: twine/requirements.in
+    actors:
+      - type: python-pip
+        dependencies: ".*"
